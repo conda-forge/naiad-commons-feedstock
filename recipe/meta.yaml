@@ -14,22 +14,24 @@ build:
    - POETRY_DYNAMIC_VERSIONING_BYPASS={{ version }}
   script: 
   - {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - pip
     - poetry-core
     - poetry-dynamic-versioning
 
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - scipy >=1.9.2
     - spherical-geometry >=1.2.22
     
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - naiad_commons
 
